@@ -60,6 +60,40 @@ def __str__(self):
 LinkedList.__str__ = __str__ 
 
 
+"""
+The pop method can have one of the three cases:
+1) List is empty. In that case, we can't pop an item. Hence, raised an exception
+2) List has only one node that head is pointing to. In that case, we just return the value and point the head to None.
+3) List has more than one element. In such a scenario, we need both previous and next element. We traverse the entire list while keeping
+track of both prev and current node reference. Once we the reach the end of the list, where temp.next is None, we return the temp.data and
+point the next reference of prev node to None or to the next reference of current node which is again None because we are at the last element
+in the list. 
+"""
+
+def pop(self):
+    #case 1
+    if self.head is None:
+        raise Exception("Cannot pop! No value.")
+
+    # case 2
+    if self.head.next is None:
+        val = self.head.data
+        self.head = self.head.next
+        return val
+    
+    # case 3
+    temp = self.head
+    while temp.next is not None:
+        prev = temp  
+        temp = temp.next
+    
+    val = temp.data
+    prev.next = temp.next
+    return val 
+
+LinkedList.pop = pop 
+
+    
 
 # TESTS
 ll = LinkedList()
@@ -69,3 +103,15 @@ ll.push(3)
 ll.push(4)
 ll.push(5)
 print(ll)
+
+ll.pop()
+print(ll)
+ll.pop()
+print(ll)
+ll.pop()
+print(ll)
+ll.pop()
+print(ll)
+ll.pop()
+print(ll)
+ll.pop()
