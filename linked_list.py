@@ -129,9 +129,42 @@ def insert(self, index, data):
 
 LinkedList.insert = insert
 
-      
+"""
 
-# TESTS
+
+"""
+def remove_by_index(self, index):
+    if self.head is None:
+        raise Exception("List is empty!")
+
+    temp = self.head
+    
+    if index == 0:
+        val = temp.data
+        self.head = temp.next
+        return val
+
+    count = 0
+    while temp is not None and count < index: 
+        prev = temp
+        temp = temp.next
+        count += 1
+
+    if temp is None:
+        raise Exception("Position does not exist.")
+
+    val = temp.data
+    prev.next = temp.next
+    return val
+
+LinkedList.remove_by_index = remove_by_index 
+
+
+"""
+
+"""
+
+#TESTS
 ll = LinkedList()
 ll.push(1)
 ll.push(2)
@@ -154,4 +187,19 @@ print(ll)
 ll.insert(3, 4)
 print(ll)
 
+ll.remove_by_index(2)
+print(ll)
 
+ll.remove_by_index(0)
+print(ll)
+
+ll.remove_by_index(2)
+print(ll)
+
+ll.remove_by_index(3)
+print(ll)
+
+ll.remove_by_index(0)
+print(ll)
+
+ll.remove_by_index(0)
