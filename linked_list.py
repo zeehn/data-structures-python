@@ -93,7 +93,41 @@ def pop(self):
 
 LinkedList.pop = pop 
 
+"""
+Insert method takes index and data as a parameter. The operation is to insert the given data at the given index. 
+If the index is 0, that means we have to insert the element at the very beginning of the list. First, we create a new node by creating an
+instance from the Node class. Then, we make the new node's next reference point to where head is pointing to right now, that is towards the
+0th element right now that will become first element once we complete our operation. Next up, we make the head point to the new_node and we 
+are done if index was 0.
+
+For all other cases, we have to traverse the list until we either reach the end of the list or reach the given index.  
+
+"""
+
+
+def insert(self, index, data):
+    new_node = Node(data)
+
+    if index == 0:
+        new_node.next = self.head
+        self.head = new_node
+        return 
     
+    temp = self.head
+    count = 0
+    while temp is not None and count < index: 
+        prev = temp 
+        temp = temp.next
+        count += 1
+
+    new_node.next = temp 
+    prev.next = new_node
+
+
+
+LinkedList.insert = insert
+
+      
 
 # TESTS
 ll = LinkedList()
@@ -110,8 +144,12 @@ ll.pop()
 print(ll)
 ll.pop()
 print(ll)
-ll.pop()
+ll.insert(0, 0)
 print(ll)
-ll.pop()
+
+ll.insert(3, 5)
 print(ll)
-ll.pop()
+ll.insert(3, 4)
+print(ll)
+
+
