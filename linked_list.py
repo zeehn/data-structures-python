@@ -167,8 +167,32 @@ LinkedList.remove_by_index = remove_by_index
 
 
 """
-
+Remove by value function takes a value as input to be removed from the list if that value exits. 
+We are checking if the value is at the beginning of the list, if so we move the head pointer to the next element in the list or None.
+If the element to be removed is not at the beginning we iterate over the elements in the list until we found it. If found we break out of 
+the loop and make the previous node's next reference point to current node's next reference hence removing the temp node in the process. 
+But before doing that, we check if temp is None? That's to make sure that if temp is None that means we have reached the end of the list and
+havn't found the given value. In that case we just exit the function. 
 """
+def remove_by_value(self, val):
+    temp = self.head 
+
+    if temp is not None and temp.data == val:
+        self.head = temp.next
+        return 
+
+    while temp is not None: 
+        if temp.data == val:
+            break
+        prev = temp 
+        temp = temp.next 
+    
+    if temp is None:
+        return 
+
+    prev.next = temp.next 
+
+LinkedList.remove_by_value = remove_by_value
 
 #TESTS
 ll = LinkedList()
@@ -202,10 +226,11 @@ print(ll)
 ll.remove_by_index(2)
 print(ll)
 
-ll.remove_by_index(3)
+ll.remove_by_value(4)
 print(ll)
 
-ll.remove_by_index(0)
+ll.remove_by_value(1)
 print(ll)
 
-ll.remove_by_index(0)
+ll.remove_by_value(4)
+print(ll)
