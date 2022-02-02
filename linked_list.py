@@ -100,7 +100,9 @@ instance from the Node class. Then, we make the new node's next reference point 
 0th element right now that will become first element once we complete our operation. Next up, we make the head point to the new_node and we 
 are done if index was 0.
 
-For all other cases, we have to traverse the list until we either reach the end of the list or reach the given index.  
+For all other cases, we have to traverse the list until we either reach the end of the list or reach the given index. This also covers out of 
+bound index. For example, if we have 3 nodes and we have an index to insert at 5, since we are traversing either we reach the end of the list or
+less than index, we will only insert it at the end if the index is out of bound.  
 
 """
 
