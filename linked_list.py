@@ -130,7 +130,13 @@ def insert(self, index, data):
 LinkedList.insert = insert
 
 """
+Remove by index function does as it's obvious by it's name. We are looking at a given index and check if the list is empty we raise an exception.
+If the item to be removed is at index 0, we just move the head pointer to point to head.next. 
 
+We also check if the given index is beyond the length of the list. We again raise exception in that case. 
+
+Otherwise, we iterate over the list until we reach the given index, keep track of both prev and current node. Make the prev's next point
+to where current's next is point to and we have removed the current node. 
 
 """
 def remove_by_index(self, index):
