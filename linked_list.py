@@ -194,6 +194,23 @@ def remove_by_value(self, val):
 
 LinkedList.remove_by_value = remove_by_value
 
+
+"""
+Length method finds the number of nodes in a list. It traverses the entire list and returns the count
+"""
+
+
+def length(self):
+    temp = self.head
+    count = 0
+
+    while temp is not None:
+        temp = temp.next
+        count += 1
+    return count
+
+LinkedList.length = length
+
 #TESTS
 ll = LinkedList()
 ll.push(1)
@@ -202,6 +219,7 @@ ll.push(3)
 ll.push(4)
 ll.push(5)
 print(ll)
+print("Length = %s" % (ll.length()))
 
 ll.pop()
 print(ll)
@@ -231,6 +249,8 @@ print(ll)
 
 ll.remove_by_value(1)
 print(ll)
+
+print("Length = %s" % (ll.length()))
 
 ll.remove_by_value(4)
 print(ll)
