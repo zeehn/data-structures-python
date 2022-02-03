@@ -75,6 +75,36 @@ def pop(self):
 
 DoublyLinkedList.pop = pop
 
+
+def insert(self, index, data):
+    new_node = Node(data)
+    
+    if index == 0:
+        new_node.next = self.head 
+
+        if self.head is not None:
+            self.head.prev = new_node
+
+        self.head = new_node
+        return 
+
+    temp = self.head 
+    count = 0
+    while temp is not None and count < index:  
+        prev = temp 
+        temp = temp.next 
+        count += 1
+
+    new_node.next = temp
+    if temp is not None:
+        temp.prev = new_node 
+
+    prev.next = new_node 
+    new_node.prev = prev 
+
+DoublyLinkedList.insert = insert 
+
+
 # TEST CASES:
 
 dll = DoublyLinkedList()
@@ -89,9 +119,11 @@ print(dll)
 
 dll.pop()
 print(dll)
-dll.pop()
+dll.insert(0,10)
 print(dll)
-dll.pop()
+dll.insert(1,2)
 print(dll)
-dll.pop()
+dll.insert(0,0)
+print(dll)
+dll.insert(5,50)
 print(dll)
