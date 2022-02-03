@@ -52,15 +52,46 @@ def push(self, data):
 DoublyLinkedList.push = push 
 
 
+"""
+In Pop method we have three cases. First, when the list is empty, we raise an exception. Second, when there is only one element in the list, in that case, we just make the head pointer point to None. In the last case, when there are more than one node in the list, we traverse the list until we reach the last element while keeping track of both last and prev elements. Once we reach there, we make the prev's next reference point to current's next reference that is None is our case. 
+"""
+def pop(self):
+    if self.head is None:
+        raise Exception("List is empty. Nothing to pop!")
+
+    temp = self.head 
+    if temp.next is None: 
+        val = temp.data
+        self.head = None
+        return val 
+
+    while temp.next is not None:
+        prev = temp 
+        temp = temp.next
+
+    val = temp.data 
+    prev.next = temp.next 
+    return val 
+
+DoublyLinkedList.pop = pop
+
 # TEST CASES:
 
 dll = DoublyLinkedList()
 
 
 dll.push(1)
-
+print(dll)
+dll.push(2)
+print(dll)
+dll.push(3)
 print(dll)
 
-dll.push(2)
-
+dll.pop()
+print(dll)
+dll.pop()
+print(dll)
+dll.pop()
+print(dll)
+dll.pop()
 print(dll)
