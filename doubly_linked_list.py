@@ -76,10 +76,21 @@ def pop(self):
 DoublyLinkedList.pop = pop
 
 
+"""
+In doubly linked list, we perform an insert operation by first creating a new node. If the index is 0, there can be two cases:
+    1) The list is empty and inserting a node at 0 makes it the first element in the list. In this case, we just make the head point towards our new node. New 
+    node's next and prev element will remain None, so we don't have to do anything about them.
+    2) What if there already exists one or more elements in the list. In that case, we have to take care of prev and next connection as well. We first make the new 
+    node's next point to where the head is pointing that is the previous zeroth element. Then we make the prev of that element point towards our new node. Once this
+    connect between previous zeroth element and our new node is made. We just move the head pointer to point towards our new node. 
+If the index to be insert is not zero, then we traverse the list until we reach the end of the list or upto that index. We keep track of last and second last element
+along the way. We then make the new node point towards temp, our new node has to come before new node. We set the previous and next accordingly, if temp is None, we 
+dont bother about prev. 
+"""
 def insert(self, index, data):
     new_node = Node(data)
     
-    if index == 0:
+    if index == 0: 
         new_node.next = self.head 
 
         if self.head is not None:
