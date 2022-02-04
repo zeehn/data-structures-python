@@ -115,7 +115,31 @@ def insert(self, index, data):
 
 DoublyLinkedList.insert = insert 
 
+def remove(self, val):
+    if self.head is None:
+        raise Exception("List is empty")
 
+    temp = self.head 
+    if temp.data == val:
+        self.head = temp.next
+        temp.next.prev = None
+        return 
+
+    temp = self.head
+    while temp is not None: 
+        if temp.data == val:
+            break
+        prev = temp
+        temp = temp.next
+    
+    if temp is None:
+        return 
+
+    prev.next = temp.next
+    if temp.next is not None:
+        temp.next.prev = prev
+
+DoublyLinkedList.remove = remove
 # TEST CASES:
 
 dll = DoublyLinkedList()
@@ -137,4 +161,13 @@ print(dll)
 dll.insert(0,0)
 print(dll)
 dll.insert(5,50)
+print(dll)
+
+dll.remove(0)
+print(dll)
+dll.remove(2)
+print(dll)
+dll.remove(50)
+print(dll)
+dll.remove(99)
 print(dll)
