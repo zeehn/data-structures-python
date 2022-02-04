@@ -115,6 +115,11 @@ def insert(self, index, data):
 
 DoublyLinkedList.insert = insert 
 
+
+"""
+Remove operation removes the node with the given value. If list is empty raise an exception. If data is at the zeroth index, just move the head pointer to the next element. 
+Otherwise, iterate over the list, if the node with the value found. Make the prev.next point towards current.next, jumping over the current element in the process. If the current.next is not None, make the prev of current's next point towards prev. If the data is not found in the list, just return from the function.
+"""
 def remove(self, val):
     if self.head is None:
         raise Exception("List is empty")
