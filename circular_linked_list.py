@@ -66,6 +66,40 @@ def insert(self, index, data):
     temp.next = new_node
 
 CircularLinkedList.insert = insert 
+
+
+def remove(self, index):
+    if self.head is None:
+        raise Exception("List is empty!")
+    
+    last = self._get_last()
+
+    if index == 0:
+        val = self.head.data
+        if self.head.next is None:
+            self.head = None
+        else:
+            self.head = self.head.next
+            last.next = self.head
+        return val
+
+    temp = self.head
+    count = 0
+
+    while temp != last and count < index:
+        prev = temp 
+        temp = temp.next 
+        count += 1
+
+    val = temp.data
+    prev.next = temp.next
+    return val
+
+CircularLinkedList.remove = remove
+
+
+
+
 # Tests
 
 cll = CircularLinkedList()
@@ -82,4 +116,15 @@ print(cll)
 cll.insert(5, 500)
 print(cll)
 cll.insert(10, 10000)
+print(cll)
+
+
+print("\nRemoving:")
+cll.remove(0)
+print(cll)
+cll.remove(2)
+print(cll)
+cll.remove(3)
+print(cll)
+cll.remove(10)
 print(cll)
